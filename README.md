@@ -64,20 +64,25 @@ Using the tables above, please write the SQL code that would answer each of the 
 1. -- Select all the clients called Paul in first_name or middle_name and who are more than 25 years old.
    -- In the results, create a column with the client's age in years. 
    -- Order them from older to younger.
-   **Answer:**
+   
+**Answer:**
     
 2. -- Add a column to the table from question (1) that contains the number of loans each customer made.
    -- If there is no loan, this column should show 0.
-   **Answer**
+   
+**Answer**
 
 3. -- Select the 100cc, 125cc and 150cc bikes from the vehicle table.
    -- Add an engine_size column to the output (that contains the engine size).
-   **Answer**
+   
+ **Answer**
 
 4. -- Calculate the total principal_amount per client full name (one column that includes all the names for each client) and per vehicle make.
+
 **Answer**
 
 5. -- Select the loan table and add an extra column that shows the chronological loan order for each client based on the submitted_on_date column: 
    -- 1 if it's the client's first sale, 2 if it's the client's second sale etc.
    -- Call it loan_order
-   **Answer**
+
+**Answer**
