@@ -65,11 +65,11 @@ Using the tables above, please write the SQL code that would answer each of the 
    
 **Answer:**
 
-select first_name, middle_name,extract(years from age(date_of_birth)) as age
-from client
-where extract(years from age(date_of_birth))>25
-and
-first_name='paul' or middle_name='paul'
+select first_name, middle_name,extract(years from age(date_of_birth)) as age \n
+from client \n
+where extract(years from age(date_of_birth))>25\n
+and\n
+first_name='paul' or middle_name='paul'\n
 order by age desc;
     
 2. -- Add a column to the table from question (1) that contains the number of loans each customer made.
