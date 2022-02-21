@@ -65,9 +65,9 @@ Using the tables above, please write the SQL code that would answer each of the 
    
 **Answer:**
 
-*SELECT first_name, middle_name,extract(years from AGE(date_of_birth)) as age 
+*SELECT first_name, middle_name,EXTRACT(years from AGE(date_of_birth)) as age 
 FROM client 
-WHERE extract(years from AGE(date_of_birth))>25
+WHERE EXTRACT(years from AGE(date_of_birth))>25
 AND
 first_name='Paul' OR middle_name='Paul'
 ORDER BY age DESC;*
