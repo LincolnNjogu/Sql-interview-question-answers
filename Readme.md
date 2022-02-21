@@ -65,35 +65,35 @@ Using the tables above, please write the SQL code that would answer each of the 
    
 **Answer:**
 
-*select first_name, middle_name,extract(years from age(date_of_birth)) as age 
-from client 
-where extract(years from age(date_of_birth))>25
-and
-first_name='Paul' or middle_name='Paul'
-order by age desc;*
+*SELECT first_name, middle_name,extract(years from AGE(date_of_birth)) as age 
+FROM client 
+WHERE extract(years from AGE(date_of_birth))>25
+AND
+first_name='Paul' OR middle_name='Paul'
+ORDER BY age DESC;*
     
 2. -- Add a column to the table from question (1) that contains the number of loans each customer made.
    -- If there is no loan, this column should show 0.
    
 **Answer**
 
-*alter table client
-add column number_of_loans int 
-default 0;*
+*ALTER TABLE client
+ADD COLUMN number_of_loans int 
+DEFAULT 0;*
 
-*update client
-set number_of_loans= (select count(principal_amount)
-from loan where client.client_id=loan.client_id
-group by client_id);*
+*UPDATE client
+SET number_of_loans= (SELECT COUNT(principal_amount)
+FROM loan where client.client_id=loan.client_id
+GROUP BY client_id);*
 
 3. -- Select the 100cc, 125cc and 150cc bikes from the vehicle table.
    -- Add an engine_size column to the output (that contains the engine size).
    
  **Answer**
  
-*select *,split_part(model_name,' ',2) as engine_size
-from vehicle
-where
+*SELECT *,SPLIT_PART(model_name,' ',2) as engine_size
+FROM vehicle
+WHERE
 split_part(model_name,' ',2) IN ('150CC','125CC','100CC');*
 
 
@@ -101,12 +101,12 @@ split_part(model_name,' ',2) IN ('150CC','125CC','100CC');*
 
 **Answer**
 
-*select concat(first_name,' ',middle_name,' ',last_name) as full_name,
-sum(principal_amount),make
-from client
-left join loan on client.client_id=loan.client_id
-left join vehicle on vehicle.vehicle_id=loan.vehicle_id
-group by client.client_id,vehicle.make*
+*SELECT CONCAT(first_name,' ',middle_name,' ',last_name) AS full_name,
+SUM(principal_amount),make
+FROM client
+LEFT JOIN loan ON client.client_id=loan.client_id
+LEFT JOIN vehicle ON vehicle.vehicle_id=loan.vehicle_id
+GROUP BY client.client_id,vehicle.make*
 
 
 5. -- Select the loan table and add an extra column that shows the chronological loan order for each client based on the submitted_on_date column: 
