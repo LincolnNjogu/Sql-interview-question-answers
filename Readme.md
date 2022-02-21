@@ -77,31 +77,31 @@ order by age desc;*
    
 **Answer**
 
-alter table client
+*alter table client
 add column number_of_loans int 
-default 0;
+default 0;*
 
-update client
+*update client
 set number_of_loans= (select count(principal_amount)
 from loan where client.client_id=loan.client_id
-group by client_id);
+group by client_id);*
 
 3. -- Select the 100cc, 125cc and 150cc bikes from the vehicle table.
    -- Add an engine_size column to the output (that contains the engine size).
    
  **Answer**
  
- select *,split_part(model_name,' ',2) as engine_size
+*select *,split_part(model_name,' ',2) as engine_size
 from vehicle
 where
-split_part(model_name,' ',2) IN ('150CC','125CC','100CC');
+split_part(model_name,' ',2) IN ('150CC','125CC','100CC');*
 
 
 4. -- Calculate the total principal_amount per client full name (one column that includes all the names for each client) and per vehicle make.
 
 **Answer**
 
-select concat(first_name,' ',middle_name,' ',last_name) as full_name,
+*select concat(first_name,' ',middle_name,' ',last_name) as full_name,
 sum(principal_amount),make
 from client
 left join loan on client.client_id=loan.client_id
