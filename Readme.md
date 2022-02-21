@@ -106,7 +106,7 @@ sum(principal_amount),make
 from client
 left join loan on client.client_id=loan.client_id
 left join vehicle on vehicle.vehicle_id=loan.vehicle_id
-group by client.client_id,vehicle.make
+group by client.client_id,vehicle.make*
 
 
 5. -- Select the loan table and add an extra column that shows the chronological loan order for each client based on the submitted_on_date column: 
