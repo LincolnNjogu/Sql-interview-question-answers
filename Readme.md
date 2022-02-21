@@ -65,12 +65,12 @@ Using the tables above, please write the SQL code that would answer each of the 
    
 **Answer:**
 
-select first_name, middle_name,extract(years from age(date_of_birth)) as age 
+*select first_name, middle_name,extract(years from age(date_of_birth)) as age 
 from client 
 where extract(years from age(date_of_birth))>25
 and
 first_name='Paul' or middle_name='Paul'
-order by age desc;
+order by age desc;*
     
 2. -- Add a column to the table from question (1) that contains the number of loans each customer made.
    -- If there is no loan, this column should show 0.
