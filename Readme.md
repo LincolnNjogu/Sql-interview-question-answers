@@ -77,11 +77,17 @@ Using the tables above, please write the SQL code that would answer each of the 
    
 **Answer**
 
+
+					--Adds a column to the table
+						
 						ALTER TABLE client
 						ADD COLUMN number_of_loans int 
 						DEFAULT 0;*
 
-						*UPDATE client
+						
+					--Updates the table by setting the values of the new column
+						
+						UPDATE client
 						SET number_of_loans= (SELECT COUNT(principal_amount)
 						FROM loan where client.client_id=loan.client_id
 						GROUP BY client_id);
@@ -106,7 +112,7 @@ Using the tables above, please write the SQL code that would answer each of the 
 						FROM client
 						LEFT JOIN loan ON client.client_id=loan.client_id
 						LEFT JOIN vehicle ON vehicle.vehicle_id=loan.vehicle_id
-						GROUP BY client.client_id,vehicle.make
+						GROUP BY client.client_id,vehicle.make;
 
 
 5. -- Select the loan table and add an extra column that shows the chronological loan order for each client based on the submitted_on_date column: 
@@ -114,3 +120,29 @@ Using the tables above, please write the SQL code that would answer each of the 
    -- Call it loan_order
 
 **Answer**
+
+					--Adds a column to the table
+						
+						ALTER TABLE loan
+						ADD COLUMN loan_order int;
+
+
+
+					--Updates the table by setting the values of the new column
+						
+						UPDATE loan
+						SET loan_order=(
+							SELECT row_number()
+							OVER(PARTITION BY loan.client_id
+								ORDER BY submitted_on_date)
+							FROM loan
+						);
+						
+						
+					--Adds a column to the result set with the row_number() window function
+						
+						SELECT *, ROW_NUMBER()
+						OVER( PARTITION BY client_id
+							 ORDER BY submitted_on_date
+							)AS loan_order
+						FROM loan;
